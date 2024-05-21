@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Weather App</title>
+    <style>
+        body {
+            background-image: url('https://t3.ftcdn.net/jpg/05/79/86/10/360_F_579861052_KjeAAbyaXOBY6JjxMEPBVJypp2KSb59v.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            min-height: 80vh;
+        }
+
+        .weather-container {
+            max-width: 80vw;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Semi-transparent background */
+            backdrop-filter: blur(10px);
+            /* Apply blur effect */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            border-radius: 8px 0 0 8px;
+        }
+
+        button[type="submit"] {
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #3f51b5, #2196f3);
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(45deg, #2196f3, #3f51b5);
+            transform: translateY(-2px);
+        }
+
+        .unit-toggle input[type="checkbox"]+label {
+            background-color: #e0e0e0;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .unit-toggle input[type="checkbox"]:checked+label {
+            background-color: #3f51b5;
+        }
+
+        .spinner-border {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .weather-info {
+            display: none;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .weather-info img {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        .forecast-info {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .forecast-day {
+            display: inline-block;
+            width: calc(33.33% - 20px);
+            margin: 0 10px;
+            vertical-align: top;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="weather-container">
+        <h1>Weather App</h1>
+        <form id="weather-form">
+            <input type="text" id="city-input" class="form-control" placeholder="Enter city name">
+            <button type="submit" class="btn btn-primary">Get Weather</button>
+        </form>
+        <div class="unit-toggle">
+            <label for="unit-switch" class="form-label">Toggle Celsius/Fahrenheit</label>
+            <input type="checkbox" id="unit-switch">
+        </div>
+        <div class="spinner-border" id="loading-spinner" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="weather-info" id="weather-info">
+            <img id="weather-icon" src="" alt="Weather Icon">
+            <h2 id="city-name"></h2>
+            <p id="temperature"></p>
+            <p id="description"></p>
+            <p id="local-time"></p>
+        </div>
+        <div class="forecast-info" id="forecast-info">
+            <h2>3-Day Forecast</h2>
+            <div id="forecast-details"></div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
